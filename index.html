@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mitarbeiterbefragung 2025 - Klinik für Radiologie und Nuklearmedizin">
+    <meta name="author" content="Klinikum St. Georg Leipzig">
+    
+    <title>Mitarbeiterbefragung 2025 | Klinik für Radiologie und Nuklearmedizin</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    
+    <!-- Schriftarten -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icon-Bibliothek -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS-Dateien -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    
+    <!-- Modulspezifische CSS-Dateien -->
+    <link rel="stylesheet" href="assets/css/modules/dashboard.css">
+    <link rel="stylesheet" href="assets/css/modules/data-entry.css">
+    <link rel="stylesheet" href="assets/css/modules/data-import-export.css">
+    <link rel="stylesheet" href="assets/css/modules/analysis.css">
+    <link rel="stylesheet" href="assets/css/modules/reporting.css">
+    <link rel="stylesheet" href="assets/css/modules/recommendations.css">
+    <link rel="stylesheet" href="assets/css/modules/administration.css">
+</head>
+<body>
+    <div class="app-wrapper" id="app">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="d-flex align-items-center justify-content-between w-100">
+                <div class="d-flex align-items-center">
+                    <!-- Mobile Menü-Toggle -->
+                    <button id="sidebar-toggle" class="btn btn-icon d-md-none mr-2" aria-label="Menü einblenden">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    
+                    <!-- Logo und Titel -->
+                    <div class="d-flex align-items-center">
+                        <img src="assets/images/Logo.png" alt="Klinikum St. Georg Logo" class="mr-3" style="height: 40px;">
+                        <div>
+                            <h1 class="mb-0" style="font-size: 1.2rem; color: white;">Mitarbeiterbefragung 2025</h1>
+                            <div style="font-size: 0.8rem; opacity: 0.8;">Klinik für Radiologie und Nuklearmedizin</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Header-Aktionen -->
+                <div class="d-flex align-items-center">
+                    <div id="auto-save-indicator" class="mr-3 d-none-sm">
+                        <span class="text-white" style="opacity: 0.8;"><i class="fas fa-cloud-upload-alt mr-1"></i> Autosave aktiv</span>
+                    </div>
+                    
+                    <!-- Hilfe-Button -->
+                    <button id="help-button" class="btn btn-icon" style="background: rgba(255,255,255,0.2); color: white;" aria-label="Hilfe anzeigen">
+                        <i class="fas fa-question"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <div class="app-content">
+            <!-- Sidebar / Navigation -->
+            <nav class="app-sidebar" id="app-sidebar">
+                <div class="px-3 py-4">
+                    <div class="mb-4 d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Navigation</h5>
+                        <button id="sidebar-close" class="btn btn-icon btn-sm d-md-none" aria-label="Menü schließen">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="#dashboard" class="nav-link active" data-module="dashboard">
+                                <i class="fas fa-chart-pie"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#data-entry" class="nav-link" data-module="data-entry">
+                                <i class="fas fa-edit"></i>
+                                Datenerfassung
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#data-import-export" class="nav-link" data-module="data-import-export">
+                                <i class="fas fa-file-import"></i>
+                                Import / Export
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#analysis" class="nav-link" data-module="analysis">
+                                <i class="fas fa-chart-bar"></i>
+                                Datenanalyse
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#reporting" class="nav-link" data-module="reporting">
+                                <i class="fas fa-file-pdf"></i>
+                                Berichte
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#recommendations" class="nav-link" data-module="recommendations">
+                                <i class="fas fa-lightbulb"></i>
+                                Handlungsempfehlungen
+                            </a>
+                        </li>
+                        
+                        <div class="nav-divider"></div>
+                        
+                        <li class="nav-item">
+                            <a href="#administration" class="nav-link" data-module="administration">
+                                <i class="fas fa-cogs"></i>
+                                Verwaltung
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-5 pt-4 text-center" style="border-top: 1px solid rgba(0,0,0,0.1);">
+                        <div class="survey-stats mb-2">
+                            <div id="survey-count" class="font-weight-bold">0</div>
+                            <div class="text-muted" style="font-size: 0.8rem;">Fragebögen erfasst</div>
+                        </div>
+                        
+                        <div id="last-saved" class="text-muted" style="font-size: 0.75rem;">
+                            <i class="fas fa-save mr-1"></i> Letzte Speicherung: nie
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Hauptinhalt -->
+            <main class="app-main" id="app-main">
+                <!-- Dynamischer Inhaltsbereich -->
+                <div id="module-container" class="fade-in">
+                    <!-- Module werden hier dynamisch geladen -->
+                    <div class="loader-container visible">
+                        <div class="loader"></div>
+                        <p>Anwendung wird geladen...</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="footer-copyright">
+                        © 2025 Klinikum St. Georg Leipzig - Klinik für Radiologie und Nuklearmedizin
+                    </div>
+                    <div class="footer-version">
+                        Version 1.0.0
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Hilfe-Dialog-Template -->
+    <template id="help-dialog-template">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Hilfe & Unterstützung</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-4">
+                    <h4>Kurzanleitung</h4>
+                    <p>Diese Anwendung dient zur Erfassung, Analyse und Auswertung der Mitarbeiterbefragung 2025 der Klinik für Radiologie und Nuklearmedizin.</p>
+                    
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Schnellstart-Anleitung</h5>
+                            <ol>
+                                <li>Erfassen Sie Fragebögen unter <strong>Datenerfassung</strong></li>
+                                <li>Importieren Sie bestehende Daten über <strong>Import/Export</strong></li>
+                                <li>Analysieren Sie Ergebnisse unter <strong>Datenanalyse</strong></li>
+                                <li>Erstellen Sie Berichte im <strong>Berichte</strong>-Modul</li>
+                                <li>Erhalten Sie konkrete <strong>Handlungsempfehlungen</strong> basierend auf den Ergebnissen</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <h4>Modulübersicht</h4>
+                    <div class="table-container">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Modul</th>
+                                    <th>Beschreibung</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><i class="fas fa-chart-pie"></i> Dashboard</td>
+                                    <td>Übersicht über wichtigste KPIs und Status der Befragung</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-edit"></i> Datenerfassung</td>
+                                    <td>Eingabe und Verwaltung von Fragebögen</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-file-import"></i> Import/Export</td>
+                                    <td>Daten im CSV-Format importieren und exportieren</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-chart-bar"></i> Datenanalyse</td>
+                                    <td>Detaillierte Auswertungen und Visualisierungen</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-file-pdf"></i> Berichte</td>
+                                    <td>Erstellung strukturierter PDF/PowerPoint-Berichte</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-lightbulb"></i> Handlungsempfehlungen</td>
+                                    <td>Vorschläge für konkrete Maßnahmen basierend auf den Ergebnissen</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-cogs"></i> Verwaltung</td>
+                                    <td>Einstellungen und Systemkonfiguration</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4>Hinweise zu Daten</h4>
+                    <p>Alle Daten werden lokal in Ihrem Browser gespeichert und nicht an externe Server übermittelt. Bitte sichern Sie Ihre Daten regelmäßig durch Export im Import/Export-Modul.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="close-help-dialog">Verstanden</button>
+            </div>
+        </div>
+    </template>
+    
+    <!-- Externe Bibliotheken -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <!-- Anwendungsskripte -->
+    <script src="assets/js/survey-schema.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/data-manager.js"></script>
+    <script src="assets/js/app.js"></script>
+    
+    <!-- Modulspezifische Skripte -->
+    <script src="assets/js/modules/dashboard.js"></script>
+    <script src="assets/js/modules/data-entry.js"></script>
+    <script src="assets/js/modules/data-import-export.js"></script>
+    <script src="assets/js/modules/analysis.js"></script>
+    <script src="assets/js/modules/reporting.js"></script>
+    <script src="assets/js/modules/recommendations.js"></script>
+    <script src="assets/js/modules/administration.js"></script>
+    
+    <script>
+        // Initialisierung der Anwendung nach DOM-Laden
+        document.addEventListener('DOMContentLoaded', function() {
+            // App initialisieren
+            App.init();
+            
+            // Event-Listener für Sidebar Toggle auf mobilen Geräten
+            document.getElementById('sidebar-toggle').addEventListener('click', function() {
+                const sidebar = document.getElementById('app-sidebar');
+                sidebar.classList.toggle('active');
+            });
+            
+            document.getElementById('sidebar-close').addEventListener('click', function() {
+                const sidebar = document.getElementById('app-sidebar');
+                sidebar.classList.remove('active');
+            });
+            
+            // Event-Listener für Hilfe-Dialog
+            document.getElementById('help-button').addEventListener('click', function() {
+                const templateContent = document.getElementById('help-dialog-template').content.cloneNode(true);
+                
+                Utils.modal.open({
+                    id: 'help-dialog',
+                    title: 'Hilfe & Unterstützung',
+                    content: templateContent,
+                    size: 'large',
+                    onOpen: function() {
+                        document.getElementById('close-help-dialog').addEventListener('click', function() {
+                            Utils.modal.close('help-dialog');
+                        });
+                    }
+                });
+            });
+            
+            // Initialer Update der Statistik
+            updateSidebarStats();
+            
+            // Listener für Datenänderungen
+            DataManager.addListener('dataChanged', function() {
+                updateSidebarStats();
+            });
+            
+            // Funktion zur Aktualisierung der Sidebar-Statistik
+            function updateSidebarStats() {
+                const surveyCount = document.getElementById('survey-count');
+                const lastSaved = document.getElementById('last-saved');
+                const autoSaveIndicator = document.getElementById('auto-save-indicator');
+                
+                const surveys = DataManager.getAllSurveys();
+                surveyCount.textContent = surveys.length;
+                
+                const state = DataManager.getState();
+                if (state.lastModified) {
+                    const formattedDate = Utils.date.formatDateTime(state.lastModified);
+                    lastSaved.innerHTML = `<i class="fas fa-save mr-1"></i> Gespeichert: ${formattedDate}`;
+                }
+                
+                // Autosave-Indikator anzeigen/verstecken
+                if (state.appSettings.notifications.autosaveEnabled) {
+                    autoSaveIndicator.classList.remove('d-none');
+                } else {
+                    autoSaveIndicator.classList.add('d-none');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

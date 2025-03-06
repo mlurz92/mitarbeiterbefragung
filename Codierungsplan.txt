@@ -1,0 +1,56 @@
+1. Grundlagen und Datenstruktur
+Phase 1: Basis-Setup
+survey-schema.js - Definition des Fragebogens, Validierungsregeln und Datenstruktur
+utils.js - Allgemeine Hilfsfunktionen für die gesamte Anwendung
+data-manager.js - CRUD-Operationen und LocalStorage-Integration
+Phase 2: UI-Fundament
+main.css und components.css - Corporate Design (#e3000b, Weiß) und UI-Komponenten
+index.html - SPA-Gerüst mit Navigation und Moduleinbindung
+app.js - Modul-Routing und zentrales Event-System
+2. Kernfunktionalität für Datenmanagement
+Phase 3: Datenerfassungsmodul
+modules/data-entry.html - Fragebogenformular mit originalgetreuer Struktur
+assets/js/modules/data-entry.js - Formularlogik, Validierung, CRUD-UI
+assets/css/modules/data-entry.cssassets/css/modules/data-entry.css
+Phase 4: Datenimport/-Export
+modules/data-import-export.htmlmodules/data-import-export.html
+assets/js/modules/data-import-export.js - CSV-Verarbeitung mit PapaParse, Projekt-Im-/Export
+assets/css/modules/data-import-export.css - Styling für Import/Export-Komponenten
+3. Analysefunktionen
+Phase 5: Datenanalyse und Visualisierung
+modules/analysis.html - Filter- und Visualisierungsbereiche
+assets/js/modules/analysis.js - Statistische Funktionen, Chart.js-Integration, Filter
+assets/css/modules/analysis.css - Diagramm-Styling und Filter-UI
+Phase 6: Reporting
+modules/reporting.html - Berichtsvorlagen und Exportoptionen
+assets/js/modules/reporting.js - PDF/PowerPoint-Export mit jsPDF, Berichtslogik
+assets/css/modules/reporting.css - Druck- und Vorschau-Styling
+4. Unterstützende Module
+Phase 7: Handlungsempfehlungen
+modules/recommendations.html - Problembereich-Anzeige und Maßnahmenplan
+assets/js/modules/recommendations.js - Problemidentifikation und Maßnahmenkatalog
+assets/css/modules/recommendations.css - Priorisierungs- und Aktionsplan-Styling
+Phase 8: Administration
+modules/administration.html - Konfigurations- und Systemeinstellungen
+assets/js/modules/administration.js - Parameter-Management, Datenbereinigung
+assets/css/modules/administration.cssassets/css/modules/administration.css
+Phase 9: Dashboard
+modules/dashboard.html - KPIs, Schnellzugriff und Statusübersicht
+assets/js/modules/dashboard.js - Daten-Aggregation aus allen Modulen, KPI-Berechnung
+assets/css/modules/dashboard.cssassets/css/modules/dashboard.css
+5. Integration und Optimierung
+Phase 10: Modulkommunikation
+Event-Listener in allen Modulen für nahtlose Datenübergabe
+Zentrale State-Management-Erweiterungen in data-manager.js
+Optimierung der Modul-Ladelogik in app.js
+Phase 11: Finalisierung
+Code-Optimierung für Performance und Speichernutzung
+Cross-Browser-Kompatibilitätsanpassungen
+Einheitliche Fehlerbehebung und UI-Polishing
+Programmierlogik und Abhängigkeiten
+Datenschicht zuerst: Datenmodell (survey-schema.js) und Manager (data-manager.js) bilden die Basis für alle anderen Module
+UI-Framework folgt: Das CSS-Framework ermöglicht konsistente Gestaltung aller nachfolgenden Module
+Modulare Entwicklung: Jedes Modul wird komplett (HTML, JS, CSS) entwickelt, bevor zum nächsten übergegangen wird
+Integration durch Events: Module kommunizieren über ein zentrales Event-System ohne enge Kopplung
+Dashboard zuletzt: Das Dashboard integriert Daten aus allen anderen Modulen und wird daher nach deren Fertigstellung implementiert
+Optimierung am Ende: Erst wenn alle Module funktionieren, werden Leistungsoptimierungen vorgenommen

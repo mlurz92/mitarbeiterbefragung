@@ -1,0 +1,46 @@
+mitarbeiterbefragung/
+│
+├── assets/
+│   ├── css/
+│   │   ├── main.css
+│   │   ├── components.css
+│   │   └── modules/
+│   │       ├── dashboard.css
+│   │       ├── data-entry.css
+│   │       ├── data-import-export.css
+│   │       ├── analysis.css
+│   │       ├── reporting.css
+│   │       ├── recommendations.css
+│   │       └── administration.css
+│   │
+│   ├── js/
+│   │   ├── app.js
+│   │   ├── data-manager.js
+│   │   ├── survey-schema.js
+│   │   ├── utils.js
+│   │   └── modules/
+│   │       ├── dashboard.js
+│   │       ├── data-entry.js
+│   │       ├── data-import-export.js
+│   │       ├── analysis.js
+│   │       ├── reporting.js
+│   │       ├── recommendations.js
+│   │       └── administration.js
+│   │
+│   ├── images/
+│   │   └── Logo.png
+│   │
+│   └── libs/
+│       ├── chart.js
+│       ├── jspdf.min.js
+│       └── papaparse.min.js
+│
+├── index.html
+└── modules/
+    ├── dashboard.html
+    ├── data-entry.html
+    ├── data-import-export.html
+    ├── analysis.html
+    ├── reporting.html
+    ├── recommendations.html
+    └── administration.html

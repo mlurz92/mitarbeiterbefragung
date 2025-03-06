@@ -1,0 +1,824 @@
+/**
+ * analysis.css
+ * Spezifische Styles für das Datenanalyse-Modul
+ *
+ * Dieses Stylesheet enthält alle spezifischen Formatierungen für
+ * Datenfilter, Visualisierungen und statistische Analysen.
+ */
+
+/* ===== Container und Layout ===== */
+.analysis-container {
+    padding-bottom: 2rem;
+}
+
+/* ===== Filter- und Analysebereiche ===== */
+.filters-sidebar {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    position: sticky;
+    top: 1rem;
+}
+
+.filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.filters-title {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.filters-title i {
+    margin-right: 0.5rem;
+}
+
+.filters-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.filter-group {
+    margin-bottom: 1.25rem;
+}
+
+.filter-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--black);
+}
+
+.filter-select,
+.filter-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--mid-grey);
+    border-radius: var(--border-radius-sm);
+    transition: border-color 0.2s ease;
+    background-color: var(--white);
+}
+
+.filter-select:focus,
+.filter-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.1);
+}
+
+.filter-date-range {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.filter-date-input {
+    flex-grow: 1;
+}
+
+.filter-separator {
+    color: var(--dark-grey);
+}
+
+.filter-hint {
+    font-size: 0.85rem;
+    color: var(--dark-grey);
+    margin-top: 0.25rem;
+}
+
+.filter-toggle {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.filter-toggle input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.filter-summary {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--light-grey);
+}
+
+.filter-summary-title {
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+}
+
+.filter-summary-title i {
+    margin-right: 0.5rem;
+    color: var(--primary);
+}
+
+.active-filters {
+    margin-bottom: 0.75rem;
+}
+
+.active-filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    margin: 0 0.5rem 0.5rem 0;
+    background-color: var(--light-grey);
+    color: var(--dark-grey);
+    border-radius: var(--border-radius-sm);
+    font-size: 0.85rem;
+}
+
+.active-filter-name {
+    font-weight: 500;
+}
+
+.active-filter-remove {
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.active-filter-remove:hover {
+    opacity: 1;
+}
+
+.filter-count {
+    padding: 0.25rem 0.5rem;
+    background-color: var(--primary);
+    color: var(--white);
+    border-radius: var(--border-radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* ===== Analyse-Bereiche ===== */
+.analysis-view {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.view-tabs {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.view-tab {
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: var(--border-radius-sm);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    color: var(--dark-grey);
+}
+
+.view-tab.active {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.view-tab:hover:not(.active) {
+    background-color: var(--light-grey);
+}
+
+.view-content {
+    display: none;
+}
+
+.view-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+/* ===== Chart-Karten ===== */
+.chart-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.chart-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.chart-card-title {
+    font-weight: 600;
+    margin: 0;
+}
+
+.chart-card-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chart-action-btn {
+    padding: 0.25rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--dark-grey);
+    border-radius: var(--border-radius-sm);
+    transition: all 0.2s ease;
+}
+
+.chart-action-btn:hover {
+    color: var(--primary);
+    background-color: var(--light-grey);
+}
+
+.chart-container {
+    height: 300px;
+    position: relative;
+}
+
+.chart-canvas-container {
+    height: 100%;
+    width: 100%;
+}
+
+.chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.chart-legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+/* ===== Daten-Tabellen ===== */
+.data-table-container {
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    background-color: var(--light-grey);
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.data-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.data-table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.data-table .sortable {
+    cursor: pointer;
+    position: relative;
+    padding-right: 1.25rem;
+}
+
+.data-table .sortable::after {
+    content: '\f0dc';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 0.5rem;
+    color: var(--dark-grey);
+    opacity: 0.5;
+}
+
+.data-table .sortable.sorted-asc::after {
+    content: '\f0d8';
+    opacity: 1;
+    color: var(--primary);
+}
+
+.data-table .sortable.sorted-desc::after {
+    content: '\f0d7';
+    opacity: 1;
+    color: var(--primary);
+}
+
+/* ===== Zusammenfassung und Statistiken ===== */
+.stats-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.stats-card-title {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.stat-item {
+    border: 1px solid var(--light-grey);
+    border-radius: var(--border-radius-sm);
+    padding: 1rem;
+    text-align: center;
+    background-color: var(--white);
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: var(--primary);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--dark-grey);
+}
+
+/* ===== Heatmap und spezielle Visualisierungen ===== */
+.heatmap-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.heatmap-cell {
+    padding: 1rem;
+    text-align: center;
+    border-radius: var(--border-radius-sm);
+    color: var(--white);
+    font-weight: 600;
+    transition: transform 0.2s ease;
+}
+
+.heatmap-cell:hover {
+    transform: scale(1.05);
+    z-index: 5;
+}
+
+.cell-label {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.cell-value {
+    font-size: 1.25rem;
+}
+
+/* Farbskala für Heatmap */
+.heat-1 { background-color: #d73027; } /* Sehr niedrig */
+.heat-2 { background-color: #fc8d59; } /* Niedrig */
+.heat-3 { background-color: #fee08b; color: #333; } /* Mittel-niedrig */
+.heat-4 { background-color: #d9ef8b; color: #333; } /* Mittel */
+.heat-5 { background-color: #91cf60; } /* Mittel-hoch */
+.heat-6 { background-color: #1a9850; } /* Hoch */
+
+/* ===== Insights und Interpretationen ===== */
+.insights-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.insights-card-title {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--light-grey);
+    display: flex;
+    align-items: center;
+}
+
+.insights-card-title i {
+    margin-right: 0.5rem;
+    color: var(--primary);
+}
+
+.insights-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.insight-item {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border-left: 3px solid;
+    background-color: var(--light-grey);
+    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+}
+
+.insight-item.positive {
+    border-left-color: var(--success);
+    background-color: var(--success-light);
+}
+
+.insight-item.negative {
+    border-left-color: var(--error);
+    background-color: var(--error-light);
+}
+
+.insight-item.neutral {
+    border-left-color: var(--info);
+    background-color: var(--info-light);
+}
+
+.insight-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.insight-description {
+    font-size: 0.9rem;
+}
+
+.insight-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed rgba(0, 0, 0, 0.1);
+    font-size: 0.85rem;
+    color: var(--dark-grey);
+}
+
+.insight-relevance {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* ===== Vergleichsanalysen ===== */
+.comparison-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.comparison-group {
+    flex: 1;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.comparison-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.comparison-title {
+    font-weight: 600;
+    margin: 0;
+}
+
+.comparison-value {
+    margin-left: auto;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.comparison-chart {
+    height: 200px;
+    margin-bottom: 1rem;
+}
+
+.comparison-vs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    color: var(--dark-grey);
+    position: relative;
+}
+
+.comparison-vs::before,
+.comparison-vs::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background-color: var(--mid-grey);
+}
+
+.comparison-vs::before {
+    margin-bottom: 1rem;
+}
+
+.comparison-vs::after {
+    margin-top: 1rem;
+}
+
+.comparison-metrics {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.comparison-metric {
+    text-align: center;
+    flex: 1;
+}
+
+.comparison-metric-value {
+    font-weight: 600;
+}
+
+.comparison-metric-label {
+    font-size: 0.85rem;
+    color: var(--dark-grey);
+}
+
+.comparison-difference {
+    font-weight: 700;
+    margin-top: 1rem;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: var(--border-radius-sm);
+}
+
+.comparison-difference.positive {
+    background-color: var(--success-light);
+    color: var(--success);
+}
+
+.comparison-difference.negative {
+    background-color: var(--error-light);
+    color: var(--error);
+}
+
+.comparison-difference.neutral {
+    background-color: var(--info-light);
+    color: var(--info);
+}
+
+/* ===== Korrelationsmatrix ===== */
+.correlation-matrix-container {
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+}
+
+.correlation-matrix {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.correlation-matrix th,
+.correlation-matrix td {
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.correlation-matrix th {
+    white-space: nowrap;
+    background-color: var(--light-grey);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.correlation-matrix th:first-child {
+    left: 0;
+    z-index: 10;
+}
+
+.correlation-matrix td:first-child {
+    white-space: nowrap;
+    background-color: var(--light-grey);
+    position: sticky;
+    left: 0;
+    z-index: 5;
+    text-align: left;
+}
+
+.correlation-matrix td {
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.correlation-matrix td:hover {
+    z-index: 2;
+    transform: scale(1.1);
+}
+
+.correlation-cell {
+    padding: 0.75rem;
+    border-radius: var(--border-radius-sm);
+    transition: all 0.2s ease;
+}
+
+/* Farbskala für Korrelationen */
+.corr-n1 { background-color: #053061; color: white; } /* -1.0 bis -0.8 */
+.corr-n8 { background-color: #2166ac; color: white; } /* -0.8 bis -0.6 */
+.corr-n6 { background-color: #4393c3; color: white; } /* -0.6 bis -0.4 */
+.corr-n4 { background-color: #92c5de; } /* -0.4 bis -0.2 */
+.corr-n2 { background-color: #d1e5f0; } /* -0.2 bis 0 */
+.corr-0 { background-color: #f7f7f7; } /* 0 */
+.corr-p2 { background-color: #fddbc7; } /* 0 bis 0.2 */
+.corr-p4 { background-color: #f4a582; } /* 0.2 bis 0.4 */
+.corr-p6 { background-color: #d6604d; color: white; } /* 0.4 bis 0.6 */
+.corr-p8 { background-color: #b2182b; color: white; } /* 0.6 bis 0.8 */
+.corr-p1 { background-color: #67001f; color: white; } /* 0.8 bis 1.0 */
+
+/* ===== Responsive Anpassungen ===== */
+@media (max-width: 992px) {
+    .filters-sidebar {
+        position: static;
+        margin-bottom: 1.5rem;
+    }
+    
+    .filter-date-range {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .filter-separator {
+        display: none;
+    }
+    
+    .heatmap-container {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+    
+    .comparison-container {
+        flex-direction: column;
+    }
+    
+    .comparison-vs {
+        flex-direction: row;
+        margin: 1rem 0;
+    }
+    
+    .comparison-vs::before,
+    .comparison-vs::after {
+        width: 40px;
+        height: 1px;
+    }
+    
+    .comparison-vs::before {
+        margin-bottom: 0;
+        margin-right: 1rem;
+    }
+    
+    .comparison-vs::after {
+        margin-top: 0;
+        margin-left: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .chart-container {
+        height: 250px;
+    }
+    
+    .view-tabs {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .view-tab {
+        flex-grow: 1;
+        text-align: center;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    .comparison-metrics {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* ===== Dark Mode ===== */
+.dark-mode .filters-sidebar,
+.dark-mode .chart-card,
+.dark-mode .stats-card,
+.dark-mode .insights-card,
+.dark-mode .comparison-group {
+    background-color: var(--dark-grey);
+}
+
+.dark-mode .filters-header,
+.dark-mode .chart-card-header,
+.dark-mode .stats-card-title,
+.dark-mode .insights-card-title,
+.dark-mode .comparison-header {
+    border-bottom-color: var(--black);
+}
+
+.dark-mode .data-table th,
+.dark-mode .correlation-matrix th,
+.dark-mode .correlation-matrix td:first-child {
+    background-color: var(--black);
+}
+
+.dark-mode .data-table td {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .data-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .filter-select,
+.dark-mode .filter-input {
+    background-color: var(--dark-grey);
+    border-color: var(--black);
+    color: var(--white);
+}
+
+.dark-mode .filter-summary {
+    border-top-color: var(--black);
+}
+
+.dark-mode .active-filter {
+    background-color: var(--black);
+    color: var(--light-grey);
+}
+
+.dark-mode .view-tab:hover:not(.active) {
+    background-color: var(--black);
+}
+
+.dark-mode .corr-0 {
+    background-color: #333;
+}
+
+.dark-mode .stat-item {
+    background-color: var(--dark-grey);
+    border-color: var(--black);
+}
+
+.dark-mode .insight-meta {
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .comparison-vs::before,
+.dark-mode .comparison-vs::after {
+    background-color: var(--black);
+}

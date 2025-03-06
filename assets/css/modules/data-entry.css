@@ -1,0 +1,641 @@
+/**
+ * data-entry.css
+ * Spezifische Styles für das Datenerfassungs-Modul
+ *
+ * Dieses Stylesheet enthält alle Formatierungen für 
+ * die Erfassung, Bearbeitung und Verwaltung von Fragebogendaten
+ */
+
+/* ===== Container und Layout ===== */
+.data-entry-container {
+    padding-bottom: 2rem;
+}
+
+.form-view,
+.list-view {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.form-view.active,
+.list-view.active {
+    opacity: 1;
+}
+
+/* ===== Fragebogen-Liste ===== */
+.surveys-table-container {
+    margin-bottom: 1.5rem;
+    overflow: auto;
+}
+
+.surveys-table {
+    width: 100%;
+}
+
+.surveys-table th {
+    position: sticky;
+    top: 0;
+    background-color: var(--white);
+    z-index: 5;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    color: var(--black);
+    border-bottom: 2px solid var(--light-grey);
+}
+
+.surveys-table td {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.surveys-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.surveys-table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.survey-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.survey-id {
+    font-family: monospace;
+    background-color: var(--light-grey);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.survey-timestamp {
+    color: var(--dark-grey);
+    font-size: 0.9rem;
+}
+
+.survey-profession {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.85rem;
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+    color: var(--primary-color);
+}
+
+.survey-profession.arzt {
+    background-color: rgba(52, 152, 219, 0.1);
+    color: #3498db;
+}
+
+.survey-profession.mtr {
+    background-color: rgba(46, 204, 113, 0.1);
+    color: #2ecc71;
+}
+
+.survey-profession.anmeldung {
+    background-color: rgba(155, 89, 182, 0.1);
+    color: #9b59b6;
+}
+
+.survey-completeness-bar {
+    height: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: var(--light-grey);
+    overflow: hidden;
+    width: 100%;
+    max-width: 150px;
+}
+
+.completeness-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.completeness-text {
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    text-align: center;
+}
+
+.completeness-high .completeness-fill {
+    background-color: var(--success);
+}
+
+.completeness-medium .completeness-fill {
+    background-color: var(--warning);
+}
+
+.completeness-low .completeness-fill {
+    background-color: var(--error);
+}
+
+/* ===== Fragebogen-Formular ===== */
+.survey-form-container {
+    padding-bottom: 4rem;
+}
+
+.form-navigation {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.form-nav-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-nav-btn:hover {
+    background-color: var(--light-grey);
+}
+
+.form-nav-btn i {
+    opacity: 0.8;
+}
+
+.form-status {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.progress-label {
+    font-size: 0.9rem;
+    color: var(--dark-grey);
+}
+
+.form-progress-bar {
+    height: 0.5rem;
+    width: 150px;
+    background-color: var(--light-grey);
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.form-progress-fill {
+    height: 100%;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
+}
+
+/* Formular-Abschnitte */
+.form-section {
+    margin-bottom: 2.5rem;
+}
+
+.section-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary);
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--black);
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.section-title i {
+    margin-right: 0.75rem;
+}
+
+.section-description {
+    margin-top: 0.5rem;
+    color: var(--dark-grey);
+    font-size: 0.9rem;
+}
+
+/* Likert-Skala Fragen */
+.likert-question {
+    margin-bottom: 1.5rem;
+    padding: 1.25rem;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.2s ease;
+}
+
+.likert-question:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.question-text {
+    margin-bottom: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: baseline;
+}
+
+.question-number {
+    min-width: 2rem;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.likert-scale {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.25rem;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.likert-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.likert-input {
+    appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    border: 2px solid var(--mid-grey);
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    background-color: var(--white);
+}
+
+.likert-input:checked {
+    border-color: var(--primary);
+    background-color: var(--primary);
+}
+
+.likert-input:checked::after {
+    content: '';
+    position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: white;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.likert-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
+}
+
+.likert-label {
+    font-size: 0.85rem;
+    color: var(--dark-grey);
+    text-align: center;
+}
+
+.likert-legend {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--dark-grey);
+}
+
+/* Text-Fragen */
+.text-question {
+    margin-bottom: 1.5rem;
+    padding: 1.25rem;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.text-question .question-text {
+    margin-bottom: 0.75rem;
+}
+
+.text-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--mid-grey);
+    border-radius: var(--border-radius-sm);
+    min-height: 100px;
+    resize: vertical;
+    transition: border-color 0.2s ease;
+}
+
+.text-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.1);
+}
+
+/* Demografische Daten */
+.demographics-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px dashed var(--mid-grey);
+}
+
+.demographics-title {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    color: var(--black);
+    text-align: center;
+}
+
+.demographics-note {
+    margin-bottom: 2rem;
+    color: var(--dark-grey);
+    font-size: 0.9rem;
+    text-align: center;
+    font-style: italic;
+}
+
+.demographics-question {
+    margin-bottom: 1.5rem;
+}
+
+.demographics-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+}
+
+.demographics-option {
+    position: relative;
+    cursor: pointer;
+}
+
+.demographics-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.demographics-option-label {
+    display: block;
+    padding: 0.75rem;
+    text-align: center;
+    border: 1px solid var(--mid-grey);
+    border-radius: var(--border-radius-sm);
+    transition: all 0.2s ease;
+    background-color: var(--white);
+    cursor: pointer;
+}
+
+.demographics-option input[type="radio"]:checked + .demographics-option-label {
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+    border-color: var(--primary);
+    color: var(--primary);
+    box-shadow: 0 2px 8px rgba(var(--primary-color-rgb), 0.2);
+}
+
+.demographics-option input[type="radio"]:focus + .demographics-option-label {
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
+}
+
+/* Formular-Aktionen */
+.form-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background-color: var(--white);
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    z-index: 10;
+}
+
+.form-action-btn {
+    min-width: 120px;
+}
+
+/* ===== Statistiken und Zusammenfassung ===== */
+.stats-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.stat-label {
+    color: var(--dark-grey);
+}
+
+.stat-value {
+    font-weight: 500;
+    color: var(--black);
+}
+
+/* ===== Notifikationen und Validierungen ===== */
+.validation-message {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.85rem;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, height 0.3s ease;
+}
+
+.validation-message.visible {
+    opacity: 1;
+    height: auto;
+}
+
+.validation-message.error {
+    background-color: var(--error-light);
+    color: var(--error);
+}
+
+.validation-message.warning {
+    background-color: var(--warning-light);
+    color: darken(var(--warning), 20%);
+}
+
+.validation-message.success {
+    background-color: var(--success-light);
+    color: var(--success);
+}
+
+.validation-message i {
+    margin-right: 0.5rem;
+}
+
+/* ===== Tablet und Mobile ===== */
+@media (max-width: 992px) {
+    .survey-actions {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .likert-scale {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .likert-label {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-navigation {
+        flex-wrap: wrap;
+    }
+    
+    .form-status {
+        margin-left: 0;
+        margin-top: 0.5rem;
+        width: 100%;
+    }
+    
+    .form-progress-bar {
+        width: 100%;
+    }
+    
+    .surveys-table th, 
+    .surveys-table td {
+        padding: 0.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.1rem;
+    }
+    
+    .likert-question, 
+    .text-question {
+        padding: 1rem;
+    }
+    
+    .demographics-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== Dark Mode ===== */
+.dark-mode .surveys-table th {
+    background-color: var(--dark-grey);
+    color: var(--white);
+    border-bottom-color: var(--black);
+}
+
+.dark-mode .surveys-table td {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .surveys-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .likert-question,
+.dark-mode .text-question,
+.dark-mode .stats-card {
+    background-color: var(--dark-grey);
+}
+
+.dark-mode .text-input,
+.dark-mode .demographics-option-label {
+    background-color: var(--dark-grey);
+    border-color: var(--black);
+    color: var(--white);
+}
+
+.dark-mode .validation-message.error {
+    background-color: rgba(220, 53, 69, 0.2);
+}
+
+.dark-mode .validation-message.warning {
+    background-color: rgba(255, 193, 7, 0.2);
+}
+
+.dark-mode .validation-message.success {
+    background-color: rgba(40, 167, 69, 0.2);
+}
+
+.dark-mode .form-actions {
+    background-color: var(--dark-grey);
+}
+
+.dark-mode .survey-id {
+    background-color: var(--black);
+    color: var(--light-grey);
+}
+
+/* ===== Interaktive Elemente ===== */
+.interactive-hint {
+    position: absolute;
+    background-color: var(--white);
+    border-radius: var(--border-radius-sm);
+    padding: 0.75rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    width: 250px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.interactive-hint.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dark-mode .interactive-hint {
+    background-color: var(--dark-grey);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== Undo/Redo Funktionalität ===== */
+.history-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.history-action-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+    color: var(--dark-grey);
+    background-color: transparent;
+    border: 1px solid var(--mid-grey);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.history-action-btn:hover {
+    background-color: var(--light-grey);
+}
+
+.history-action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

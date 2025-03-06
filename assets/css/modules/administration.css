@@ -1,0 +1,508 @@
+/**
+ * administration.css
+ * Spezifische Styles für das Administration-Modul
+ * 
+ * Dieses Stylesheet enthält alle spezifischen Formatierungen für
+ * das Administrations-Modul, einschließlich Einstellungen, Datenverwaltung,
+ * Systemeinstellungen und Backup-Funktionen.
+ */
+
+/* ===== Grundlegendes Layout ===== */
+.administration-container {
+    padding-bottom: 2rem;
+}
+
+.admin-content {
+    position: relative;
+    min-height: 400px;
+    transition: all 0.3s ease-in-out;
+}
+
+.admin-nav .list-group-item {
+    border-radius: 0;
+    padding: 0.8rem 1rem;
+    border-left: 3px solid transparent;
+    transition: all 0.25s ease;
+}
+
+.admin-nav .list-group-item:hover {
+    background-color: rgba(var(--bs-light-rgb), 0.6);
+}
+
+.admin-nav .list-group-item.active {
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+    color: var(--primary-color);
+    border-left: 3px solid var(--primary-color);
+    font-weight: 500;
+}
+
+.admin-nav .list-group-item i {
+    width: 20px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+/* ===== System-Information ===== */
+.system-info .info-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.system-info .info-item:last-child {
+    margin-bottom: 0;
+}
+
+.system-info .info-label {
+    color: var(--bs-gray-600);
+}
+
+.system-info .info-value {
+    font-weight: 500;
+}
+
+/* ===== Allgemeine Komponenten ===== */
+.card-header {
+    background-color: rgba(var(--bs-light-rgb), 0.5);
+    border-bottom: 1px solid rgba(var(--bs-dark-rgb), 0.05);
+}
+
+.section-description {
+    color: var(--bs-gray-600);
+    margin-bottom: 0;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.stat-card {
+    padding: 1rem;
+    background: linear-gradient(to right bottom, rgba(var(--bs-light-rgb), 0.8), rgba(var(--bs-light-rgb), 0.4));
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    height: 100%;
+}
+
+.stat-title {
+    color: var(--bs-gray-700);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--bs-dark);
+}
+
+.stat-percentage {
+    color: var(--bs-gray-600);
+    font-size: 0.9rem;
+}
+
+.info-card {
+    padding: 0.75rem;
+    background-color: rgba(var(--bs-light-rgb), 0.6);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.info-card .info-label {
+    font-size: 0.85rem;
+    color: var(--bs-gray-600);
+}
+
+.info-card .info-value {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* ===== Einstellungen ===== */
+.settings-container .form-label {
+    font-weight: 500;
+    color: var(--bs-gray-700);
+}
+
+.settings-container .form-text {
+    font-size: 0.8rem;
+}
+
+.color-preview {
+    min-width: 40px;
+    cursor: pointer;
+    border: 1px solid var(--bs-gray-300);
+}
+
+.appearance-preview {
+    background-color: var(--background-color, #ffffff);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.appearance-preview.dark-preview {
+    background-color: #343a40;
+    color: #f8f9fa;
+}
+
+.appearance-preview h6 {
+    margin-bottom: 1rem;
+    color: var(--bs-gray-600);
+}
+
+.appearance-preview .preview-content {
+    padding: 1rem;
+    border: 1px dashed var(--bs-gray-400);
+    border-radius: 0.25rem;
+}
+
+/* ===== Datenverwaltung ===== */
+.data-actions .card {
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.data-actions .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.data-actions .card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.data-actions .card-text {
+    flex-grow: 1;
+    margin-bottom: 1rem;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.data-table th {
+    position: sticky;
+    top: 0;
+    background-color: var(--bs-light);
+    z-index: 10;
+    font-weight: 600;
+}
+
+.progress {
+    height: 10px;
+    background-color: rgba(var(--bs-gray-300-rgb), 0.5);
+}
+
+.progress + small {
+    font-size: 0.75rem;
+    color: var(--bs-gray-600);
+    margin-top: 0.2rem;
+    display: block;
+}
+
+/* ===== System Settings ===== */
+.problem-area-card {
+    display: flex;
+    padding: 1rem;
+    background-color: rgba(var(--bs-light-rgb), 0.5);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.problem-area-card:hover {
+    background-color: rgba(var(--bs-light-rgb), 0.8);
+}
+
+.problem-area-icon {
+    font-size: 2rem;
+    margin-right: 1rem;
+    color: var(--bs-gray-600);
+}
+
+.problem-area-content {
+    flex-grow: 1;
+}
+
+.problem-area-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.problem-area-score {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.system-settings-container .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ===== Backup ===== */
+.backup-container .card-body {
+    position: relative;
+}
+
+.auto-backup-settings {
+    padding: 0.75rem;
+    border: 1px solid var(--bs-gray-300);
+    border-radius: 0.5rem;
+    background-color: rgba(var(--bs-light-rgb), 0.5);
+}
+
+.auto-backup-config .form-group:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== Survey Data View ===== */
+.survey-data-view .survey-meta {
+    background-color: rgba(var(--bs-light-rgb), 0.5);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.survey-data-view .meta-item {
+    margin-bottom: 0.5rem;
+}
+
+.survey-data-view .meta-label {
+    font-size: 0.85rem;
+    color: var(--bs-gray-600);
+}
+
+.survey-data-view .meta-value {
+    font-weight: 500;
+}
+
+.survey-data-view .survey-section h6 {
+    padding: 0.5rem 1rem;
+    background-color: rgba(var(--bs-gray-200-rgb), 0.5);
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.survey-data-view .question-text {
+    flex-grow: 1;
+    padding-right: 1rem;
+}
+
+/* ===== Reports Management ===== */
+.reports-management .table td {
+    vertical-align: middle;
+}
+
+/* ===== KPI Cards ===== */
+.kpi-value {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* ===== Dark Mode ===== */
+.dark-mode .card {
+    background-color: #2d3339;
+    color: #e9ecef;
+}
+
+.dark-mode .card-header {
+    background-color: #343a40;
+    border-bottom-color: #495057;
+}
+
+.dark-mode .admin-nav .list-group-item {
+    background-color: #2d3339;
+    color: #e9ecef;
+    border-color: #495057;
+}
+
+.dark-mode .admin-nav .list-group-item:hover {
+    background-color: #343a40;
+}
+
+.dark-mode .admin-nav .list-group-item.active {
+    background-color: rgba(var(--primary-color-rgb), 0.2);
+}
+
+.dark-mode .stat-card {
+    background: linear-gradient(to right bottom, rgba(52, 58, 64, 0.8), rgba(52, 58, 64, 0.4));
+}
+
+.dark-mode .stat-title {
+    color: #adb5bd;
+}
+
+.dark-mode .stat-value {
+    color: #f8f9fa;
+}
+
+.dark-mode .info-card,
+.dark-mode .appearance-preview,
+.dark-mode .auto-backup-settings,
+.dark-mode .problem-area-card {
+    background-color: #343a40;
+}
+
+.dark-mode .table {
+    color: #e9ecef;
+}
+
+.dark-mode .table-hover tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.075);
+}
+
+.dark-mode .form-control,
+.dark-mode .form-select {
+    background-color: #343a40;
+    border-color: #495057;
+    color: #e9ecef;
+}
+
+.dark-mode .form-text {
+    color: #adb5bd;
+}
+
+.dark-mode .input-group-text {
+    background-color: #495057;
+    border-color: #495057;
+    color: #e9ecef;
+}
+
+/* ===== Responsive Anpassungen ===== */
+@media (max-width: 767.98px) {
+    .administration-container .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .administration-container .actions {
+        margin-top: 1rem;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .admin-nav {
+        margin-bottom: 1.5rem;
+    }
+    
+    .problem-area-card {
+        margin-bottom: 1rem;
+    }
+    
+    .stat-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* ===== Animationen ===== */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Für Geräte, die reduzierte Bewegung bevorzugen */
+@media (prefers-reduced-motion: reduce) {
+    .fade-in {
+        animation: none;
+    }
+    
+    .data-actions .card:hover {
+        transform: none;
+    }
+}
+
+/* ===== Hilfsklassen ===== */
+.bg-opacity-10 {
+    --bs-bg-opacity: 0.1;
+}
+
+/* ===== Spezielle Badges für Prioritäten ===== */
+.badge.high,
+.badge.medium,
+.badge.low {
+    padding: 0.4rem 0.6rem;
+    font-weight: 500;
+}
+
+.badge.high {
+    background-color: var(--bs-danger);
+}
+
+.badge.medium {
+    background-color: var(--bs-warning);
+}
+
+.badge.low {
+    background-color: var(--bs-info);
+}
+
+/* ===== Daten-Distribution-Bars ===== */
+.distribution-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.distribution-item:last-child {
+    margin-bottom: 0;
+}
+
+.priority-label {
+    width: 80px;
+    font-size: 0.85rem;
+}
+
+.priority-bar-container {
+    flex-grow: 1;
+    height: 18px;
+    background-color: rgba(var(--bs-gray-200-rgb), 0.5);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 0.5rem;
+}
+
+.priority-bar {
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+.priority-count {
+    font-size: 0.85rem;
+    color: var(--bs-gray-600);
+    min-width: 24px;
+    text-align: right;
+}
+
+/* ===== Custom Table Styles ===== */
+.action-plan-table thead th {
+    background-color: rgba(var(--bs-light-rgb), 0.7);
+    font-weight: 600;
+    border-bottom-width: 1px;
+}
+
+.action-plan-table tbody td {
+    vertical-align: middle;
+}

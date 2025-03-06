@@ -1,0 +1,696 @@
+/**
+ * data-import-export.css
+ * Spezifische Styles für das Daten-Import/Export-Modul
+ *
+ * Dieses Stylesheet enthält alle spezifischen Formatierungen für
+ * Import- und Export-Funktionen, CSV-Handling und Datensicherung.
+ */
+
+/* ===== Container und Layout ===== */
+.import-export-container {
+    padding-bottom: 2rem;
+}
+
+/* ===== Tabs für Import/Export ===== */
+.ie-tabs {
+    display: flex;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.ie-tab {
+    padding: 1rem 1.5rem;
+    font-weight: 500;
+    color: var(--dark-grey);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ie-tab i {
+    font-size: 1.1em;
+}
+
+.ie-tab:hover {
+    color: var(--primary);
+}
+
+.ie-tab.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    font-weight: 600;
+}
+
+.ie-content {
+    display: none;
+}
+
+.ie-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ===== Import-Bereich ===== */
+.import-section {
+    margin-bottom: 2rem;
+}
+
+.import-drop-zone {
+    border: 2px dashed var(--mid-grey);
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    text-align: center;
+    transition: all 0.2s ease;
+    background-color: var(--white);
+    position: relative;
+}
+
+.import-drop-zone.drag-over {
+    border-color: var(--primary);
+    background-color: rgba(var(--primary-color-rgb), 0.05);
+}
+
+.import-drop-zone.error {
+    border-color: var(--error);
+    background-color: rgba(var(--error-rgb), 0.05);
+}
+
+.import-drop-zone-icon {
+    font-size: 2.5rem;
+    color: var(--dark-grey);
+    margin-bottom: 1rem;
+}
+
+.import-drop-zone-text {
+    color: var(--dark-grey);
+    margin-bottom: 1rem;
+}
+
+.import-drop-zone-prompt {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.import-drop-zone-description {
+    color: var(--dark-grey);
+    font-size: 0.9rem;
+}
+
+.import-drop-zone-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.import-browse-btn {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    margin-top: 1rem;
+    background-color: var(--white);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.import-browse-btn:hover {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.import-file-info {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: var(--border-radius-sm);
+    background-color: var(--light-grey);
+    display: none;
+}
+
+.import-file-info.visible {
+    display: block;
+}
+
+.import-file-name {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.import-file-details {
+    font-size: 0.85rem;
+    color: var(--dark-grey);
+}
+
+.import-options {
+    margin-top: 1.5rem;
+}
+
+.import-options-title {
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: var(--black);
+}
+
+.import-option {
+    margin-bottom: 1rem;
+}
+
+.import-option-label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+/* ===== CSV-Vorschau ===== */
+.csv-preview {
+    margin-top: 2rem;
+}
+
+.csv-preview-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: var(--black);
+}
+
+.csv-preview-container {
+    overflow-x: auto;
+    max-height: 300px;
+    border: 1px solid var(--light-grey);
+    border-radius: var(--border-radius-sm);
+}
+
+.csv-preview-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.csv-preview-table th {
+    background-color: var(--light-grey);
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.csv-preview-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--light-grey);
+    white-space: nowrap;
+}
+
+.csv-preview-table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.field-mapping {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.field-mapping-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: var(--black);
+}
+
+.field-mapping-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.field-mapping-table th {
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    background-color: var(--light-grey);
+    border-bottom: 1px solid var(--mid-grey);
+}
+
+.field-mapping-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.field-mapping-select {
+    width: 100%;
+}
+
+.field-mapping-status {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.field-mapping-status.matched {
+    background-color: var(--success-light);
+    color: var(--success);
+}
+
+.field-mapping-status.unmatched {
+    background-color: var(--warning-light);
+    color: var(--warning);
+}
+
+.field-mapping-status.required {
+    background-color: var(--error-light);
+    color: var(--error);
+}
+
+.import-progress {
+    margin-top: 2rem;
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 33.333%;
+    position: relative;
+}
+
+.progress-step::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    background-color: var(--light-grey);
+    width: 100%;
+    top: 1rem;
+    left: 50%;
+    z-index: 0;
+}
+
+.progress-step:last-child::after {
+    display: none;
+}
+
+.progress-step-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: var(--light-grey);
+    color: var(--dark-grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    z-index: 5;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.progress-step.done .progress-step-icon {
+    background-color: var(--success);
+    color: var(--white);
+}
+
+.progress-step.active .progress-step-icon {
+    background-color: var(--primary);
+    color: var(--white);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
+}
+
+.progress-step-text {
+    font-size: 0.85rem;
+    color: var(--dark-grey);
+    text-align: center;
+}
+
+.progress-step.active .progress-step-text {
+    font-weight: 500;
+    color: var(--primary);
+}
+
+/* ===== Export-Bereich ===== */
+.export-options {
+    margin-bottom: 2rem;
+}
+
+.export-option {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+}
+
+.export-option:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.export-option-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.export-option-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.export-option-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--black);
+}
+
+.export-option-description {
+    margin-bottom: 1.5rem;
+    color: var(--dark-grey);
+}
+
+.export-filters {
+    margin-bottom: 1.5rem;
+}
+
+.export-filters-title {
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.export-filter-group {
+    margin-bottom: 1rem;
+}
+
+.export-filter-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--dark-grey);
+}
+
+/* ===== Backup ===== */
+.backup-info {
+    background-color: var(--info-light);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-bottom: 2rem;
+    color: var(--info);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.backup-info-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.backup-info-text {
+    flex-grow: 1;
+}
+
+.backup-info-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.backup-history {
+    margin-top: 2.5rem;
+}
+
+.backup-history-title {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.backup-history-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.backup-history-table th {
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    background-color: var(--light-grey);
+    border-bottom: 1px solid var(--mid-grey);
+}
+
+.backup-history-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.backup-history-table tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.backup-date {
+    white-space: nowrap;
+}
+
+.backup-size {
+    white-space: nowrap;
+}
+
+.backup-status {
+    padding: 0.25rem 0.5rem;
+    border-radius: 1rem;
+    font-size: 0.85rem;
+    display: inline-block;
+}
+
+.backup-status.success {
+    background-color: var(--success-light);
+    color: var(--success);
+}
+
+.backup-status.partial {
+    background-color: var(--warning-light);
+    color: darken(var(--warning), 20%);
+}
+
+.backup-status.failed {
+    background-color: var(--error-light);
+    color: var(--error);
+}
+
+.backup-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+/* ===== Import/Export Summary ===== */
+.summary-container {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.summary-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.summary-icon.success {
+    color: var(--success);
+}
+
+.summary-icon.warning {
+    color: var(--warning);
+}
+
+.summary-icon.error {
+    color: var(--error);
+}
+
+.summary-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.summary-message {
+    margin-bottom: 1.5rem;
+    color: var(--dark-grey);
+}
+
+.summary-details {
+    margin: 1.5rem auto;
+    width: 100%;
+    max-width: 500px;
+    text-align: left;
+}
+
+.summary-detail {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.summary-detail:last-child {
+    border-bottom: none;
+}
+
+.summary-detail-label {
+    color: var(--dark-grey);
+}
+
+.summary-detail-value {
+    font-weight: 500;
+}
+
+.summary-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* ===== Responsive Anpassungen ===== */
+@media (max-width: 768px) {
+    .ie-tabs {
+        flex-wrap: wrap;
+        border-bottom: none;
+    }
+    
+    .ie-tab {
+        flex-basis: 50%;
+        text-align: center;
+        justify-content: center;
+        padding: 0.75rem;
+    }
+    
+    .import-drop-zone {
+        padding: 1.5rem;
+    }
+    
+    .csv-preview-container {
+        max-height: 250px;
+    }
+    
+    .progress-steps {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .progress-step {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .progress-step::after {
+        display: none;
+    }
+    
+    .progress-step-text {
+        text-align: left;
+    }
+    
+    .backup-actions {
+        flex-direction: column;
+    }
+}
+
+/* ===== Dark Mode ===== */
+.dark-mode .ie-tabs {
+    border-bottom-color: var(--black);
+}
+
+.dark-mode .import-drop-zone,
+.dark-mode .export-option,
+.dark-mode .summary-container {
+    background-color: var(--dark-grey);
+}
+
+.dark-mode .import-drop-zone {
+    border-color: var(--mid-grey);
+}
+
+.dark-mode .import-drop-zone.drag-over {
+    border-color: var(--primary);
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+}
+
+.dark-mode .csv-preview-table th {
+    background-color: var(--black);
+}
+
+.dark-mode .csv-preview-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .field-mapping-table th {
+    background-color: var(--black);
+}
+
+.dark-mode .field-mapping-table td,
+.dark-mode .csv-preview-table td,
+.dark-mode .backup-history-table td,
+.dark-mode .summary-detail {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .import-browse-btn {
+    background-color: var(--dark-grey);
+}
+
+.dark-mode .import-file-info {
+    background-color: var(--black);
+}
+
+.dark-mode .backup-history-table th {
+    background-color: var(--black);
+}
+
+.dark-mode .backup-history-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .backup-info {
+    background-color: rgba(23, 162, 184, 0.2);
+}
